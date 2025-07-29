@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A | ANGEL GOZME</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f8ff;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(135deg, #004aad, #0066ff);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    nav {
+      margin-top: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #004aad;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 74, 173, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .projects-grid, .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .projects-grid img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .projects-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .contact a.button {
+      background-color: #004aad;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .contact a.button:hover {
+      background-color: #00357f;
+    }
+
+    footer {
+      background-color: #004aad;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+      iframe {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Angel Gozme</h1>
+    <p>Diseñador Gráfico | Diseño con Propósito | Audiovisual</p>
+    <nav>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#videos">Videos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section id="sobre-mi" class="card">
+    <h2>Sobre mí</h2>
+    <p>
+      Soy diseñador gráfico con experiencia en agencias publicitarias, donde desarrollé proyectos de redes sociales y campañas visuales. También me especializo en producción audiovisual: edición, grabación, y contenido multimedia.
+    </p>
+    <p>
+      Me enfoco en crear piezas visuales que comuniquen con claridad y creatividad, combinando diseño y narrativa visual.
+    </p>
+  </section>
+
+  <section id="proyectos" class="card">
+    <h2>Proyectos Destacados</h2>
+    <div class="projects-grid">
+      <div>
+        <img src="https://via.placeholder.com/400x250.png?text=Branding+Agencia" alt="Proyecto 1" />
+        <h3>Branding para Agencia XYZ</h3>
+        <p>Desarrollo de identidad visual completa, logotipo, paleta de colores y papelería.</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/400x250.png?text=Editorial+Diseño" alt="Proyecto 2" />
+        <h3>Diseño Editorial</h3>
+        <p>Diseño de catálogo impreso y versión interactiva para empresa ABC.</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/400x250.png?text=Social+Media+Content" alt="Proyecto 3" />
+        <h3>Campañas Digitales</h3>
+        <p>Diseños para redes sociales y banners publicitarios para campañas de temporada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" class="card">
+    <h2>Trabajos Audiovisuales</h2>
+    <div class="video-grid">
+      <div>
+        <h3>Spot Publicitario</h3>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+      <div>
+        <h3>Animación / Motion Graphics</h3>
+        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="card contact">
+    <h2>Contacto</h2>
+    <p>¿Te interesa trabajar conmigo o tienes un proyecto en mente? ¡Escríbeme!</p>
+    <a href="mailto:angel.gozme@gmail.com" class="button">angel.gozme@gmail.com</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ANGEL GOZME</p>
+  </footer>
+
+</body>
+</html>
