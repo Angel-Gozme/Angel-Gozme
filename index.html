@@ -1,212 +1,296 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A | ANGEL GOZME</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANGEL GOZME</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para texto general, y una fuente de display para títulos si se desea, como Montserrat o Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos de redes sociales y contacto -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f8ff;
-      color: #333;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: linear-gradient(135deg, #004aad, #0066ff);
-      color: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
-
-    nav {
-      margin-top: 1.5rem;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffd700;
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      color: #004aad;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 74, 173, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .projects-grid, .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .projects-grid img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      transition: transform 0.3s;
-    }
-
-    .projects-grid img:hover {
-      transform: scale(1.03);
-    }
-
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-      border-radius: 8px;
-    }
-
-    .contact a.button {
-      background-color: #004aad;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .contact a.button:hover {
-      background-color: #00357f;
-    }
-
-    footer {
-      background-color: #004aad;
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
-      }
-      iframe {
-        height: 180px;
-      }
-    }
-  </style>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Fondo muy claro */
+            color: #334155; /* Gris oscuro para el texto */
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Desplazamiento suave */
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1e293b; /* Azul oscuro casi negro para títulos */
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #6366f1; /* Púrpura vibrante */
+            border-radius: 2px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* Esquinas más redondeadas */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid #e2e8f0; /* Borde sutil */
+        }
+        .btn-primary {
+            display: inline-block;
+            background-image: linear-gradient(to right, #6366f1, #8b5cf6); /* Degradado púrpura */
+            color: #ffffff;
+            padding: 0.85rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .btn-secondary {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+            color: #1e293b;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 250px; /* Altura fija para las imágenes del portafolio */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover .portfolio-info {
+            transform: translateY(0);
+        }
+        .portfolio-info h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased">
 
-  <header>
-    <h1>Angel Gozme</h1>
-    <p>Dise�ador Gr�fico | Dise�o con Prop�sito | Audiovisual</p>
-    <nav>
-      <a href="#sobre-mi">Sobre m�</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#videos">Videos</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+    <!-- Sección de Encabezado (Hero) -->
+    <header class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-24 rounded-b-[4rem] shadow-xl overflow-hidden">
+        <div class="container text-center relative z-10">
+            <img src="https://placehold.co/180x180/6366f1/ffffff?text=Tu+Foto" alt="Tu Foto de Perfil" class="w-44 h-44 rounded-full mx-auto mb-8 border-6 border-white shadow-lg object-cover">
+            <h1 class="text-6xl font-extrabold mb-4 leading-tight text-white">¡Hola, soy Angel Gozme!</h1>
+            <p class="text-2xl font-light mb-10 opacity-90">Diseño Gráfico - Audiovisual</p>
+            <div class="space-x-4">
+                <a href="#portafolio" class="btn-primary">Ver Portafolio</a>
+                <a href="#contacto" class="btn-secondary">Contáctame</a>
+            </div>
+        </div>
+    </header>
 
-  <section id="sobre-mi" class="card">
-    <h2>Sobre m�</h2>
-    <p>
-      Soy dise�ador gr�fico con experiencia en agencias publicitarias, donde desarroll� proyectos de redes sociales y campa�as visuales. Tambi�n me especializo en producci�n audiovisual: edici�n, grabaci�n, y contenido multimedia.
-    </p>
-    <p>
-      Me enfoco en crear piezas visuales que comuniquen con claridad y creatividad, combinando dise�o y narrativa visual.
-    </p>
-  </section>
+    <main class="container py-16">
 
-  <section id="proyectos" class="card">
-    <h2>Proyectos Destacados</h2>
-    <div class="projects-grid">
-      <div>
-        <img src="https://via.placeholder.com/400x250.png?text=Branding+Agencia" alt="Proyecto 1" />
-        <h3>Branding para Agencia XYZ</h3>
-        <p>Desarrollo de identidad visual completa, logotipo, paleta de colores y papeler�a.</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/400x250.png?text=Editorial+Dise�o" alt="Proyecto 2" />
-        <h3>Dise�o Editorial</h3>
-        <p>Dise�o de cat�logo impreso y versi�n interactiva para empresa ABC.</p>
-      </div>
-      <div>
-        <img src="https://via.placeholder.com/400x250.png?text=Social+Media+Content" alt="Proyecto 3" />
-        <h3>Campa�as Digitales</h3>
-        <p>Dise�os para redes sociales y banners publicitarios para campa�as de temporada.</p>
-      </div>
-    </div>
-  </section>
+        <!-- Sección Acerca de Mí -->
+        <section id="acerca-de-mi" class="card">
+            <h2 class="section-title">Acerca de Mí</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-lg leading-relaxed text-gray-700">
+                    <p class="mb-4">
+                        Soy un diseñador gráfico y artista audiovisual con [Número] años de experiencia, especializado en
+                        crear experiencias visuales impactantes y narrativas a través del diseño y la producción multimedia.
+                    </p>
+                    <p class="mb-4">
+                        Mi pasión radica en transformar ideas complejas en soluciones visuales claras y atractivas,
+                        utilizando herramientas de vanguardia y una sólida comprensión de los principios de diseño.
+                        He trabajado en proyectos que van desde branding y diseño editorial hasta animación 2D/3D y edición de video.
+                    </p>
+                    <p>
+                        Siempre busco nuevos desafíos y oportunidades para colaborar en proyectos creativos que dejen una huella.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://placehold.co/400x300/e0e0e0/333333?text=Imagen+Personal" alt="Imagen Personal" class="rounded-xl shadow-lg max-w-full h-auto">
+                </div>
+            </div>
+        </section>
 
-  <section id="videos" class="card">
-    <h2>Trabajos Audiovisuales</h2>
-    <div class="video-grid">
-      <div>
-        <h3>Spot Publicitario</h3>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      </div>
-      <div>
-        <h3>Animaci�n / Motion Graphics</h3>
-        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
+        <!-- Sección de Servicios/Expertise -->
+        <section id="servicios" class="card">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fas fa-palette text-5xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Diseño Gráfico</h3>
+                    <p class="text-gray-600">Branding, identidad corporativa, diseño editorial, publicidad, diseño web y UI/UX.</p>
+                </div>
+                <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fas fa-video text-5xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Producción Audiovisual</h3>
+                    <p class="text-gray-600">Edición de video, motion graphics, animación 2D/3D, post-producción, efectos visuales.</p>
+                </div>
+                <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
+                    <i class="fas fa-lightbulb text-5xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Consultoría Creativa</h3>
+                    <p class="text-gray-600">Conceptualización de proyectos, dirección de arte, estrategia visual.</p>
+                </div>
+                <!-- Agrega más servicios si es necesario -->
+            </div>
+        </section>
 
-  <section id="contacto" class="card contact">
-    <h2>Contacto</h2>
-    <p>�Te interesa trabajar conmigo o tienes un proyecto en mente? �Escr�beme!</p>
-    <a href="mailto:angel.gozme@gmail.com" class="button">angel.gozme@gmail.com</a>
-  </section>
+        <!-- Sección de Portafolio -->
+        <section id="portafolio" class="card">
+            <h2 class="section-title">Portafolio Destacado</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Proyecto 1: Diseño Gráfico -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Dise%C3%B1o+Gr%C3%A1fico" alt="Proyecto de Diseño Gráfico" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Identidad de Marca "EcoVida"</h3>
+                        <p class="text-sm">Creación de logo, paleta de colores y tipografía para una marca sostenible.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Proyecto 2: Audiovisual -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Motion+Graphics" alt="Proyecto de Motion Graphics" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Animación Explicativa "TechFuture"</h3>
+                        <p class="text-sm">Video animado para startup tecnológica, explicando su producto innovador.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Proyecto 3: Diseño UI/UX -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/c084fc/ffffff?text=Dise%C3%B1o+UI%2FUX" alt="Proyecto de Diseño UI/UX" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold"> UI/UX App "HealthyPlate"</h3>
+                        <p class="text-sm">Interfaz de usuario intuitiva y experiencia de usuario mejorada para una app de nutrición.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Proyecto 4: Edición de Video -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Edici%C3%B3n+de+Video" alt="Proyecto de Edición de Video" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Spot Publicitario "TravelNow"</h3>
+                        <p class="text-sm">Edición y post-producción de un comercial de viajes vibrante.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Proyecto 5: Ilustración Digital -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Ilustraci%C3%B3n" alt="Proyecto de Ilustración Digital" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Serie de Ilustraciones "Urban Vibes"</h3>
+                        <p class="text-sm">Conjunto de ilustraciones digitales inspiradas en la vida urbana.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Proyecto 6: Animación 3D -->
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/600x400/c084fc/ffffff?text=Animaci%C3%B3n+3D" alt="Proyecto de Animación 3D" class="w-full h-auto">
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Visualización Arquitectónica 3D</h3>
+                        <p class="text-sm">Renderizados y recorrido virtual 3D para un proyecto arquitectónico.</p>
+                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
+                    </div>
+                </div>
+                <!-- Agrega más proyectos según sea necesario -->
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 ANGEL GOZME</p>
-  </footer>
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="card">
+            <h2 class="section-title">Contáctame</h2>
+            <p class="text-xl text-center mb-8 text-gray-700">¿Tienes un proyecto en mente o simplemente quieres saludar? ¡Estaré encantado de escucharte!</p>
+            <div class="flex flex-col items-center space-y-6">
+                <p class="text-2xl text-gray-800 flex items-center">
+                    <i class="fas fa-envelope mr-3 text-indigo-600"></i>
+                    Email: <a href="mailto:angel.gozme@gmail.com" class="text-blue-600 hover:underline ml-2">angel.gozme@gmail.com</a>
+                </p>
+                <div class="flex space-x-6 text-3xl">
+                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/tuusuario" target="_blank" class="text-gray-800 hover:text-black transition-colors" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.behance.net/tuperfil" target="_blank" class="text-blue-500 hover:text-blue-700 transition-colors" aria-label="Behance">
+                        <i class="fab fa-behance-square"></i>
+                    </a>
+                    <a href="https://dribbble.com/tuperfil" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors" aria-label="Dribbble">
+                        <i class="fab fa-dribbble-square"></i>
+                    </a>
+                    <!-- Agrega más iconos de redes sociales relevantes para diseño -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gray-900 text-white py-10 text-center rounded-t-[4rem] shadow-xl">
+        <div class="container">
+            <p class="mb-4">&copy; 2025 Angel Gozme. Todos los derechos reservados.</p>
+            <div class="flex justify-center space-x-6 text-lg">
+                <a href="#acerca-de-mi" class="text-gray-400 hover:text-white transition-colors">Acerca de Mí</a>
+                <a href="#servicios" class="text-gray-400 hover:text-white transition-colors">Servicios</a>
+                <a href="#portafolio" class="text-gray-400 hover:text-white transition-colors">Portafolio</a>
+                <a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Contacto</a>
+            </div>
+            <p class="text-sm text-gray-500 mt-6">Diseñado con propósito por Angel Gozme</p>
+        </div>
+    </footer>
 
 </body>
 </html>
