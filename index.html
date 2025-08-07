@@ -25,9 +25,14 @@
             color: #1e293b; /* Azul oscuro casi negro para títulos */
         }
         .container {
-            max-width: 1280px;
+            max-width: 1024px; /* Aproximadamente 80% del ancho de pantalla común (1280px * 0.8 = 1024px) */
             margin: 0 auto;
             padding: 2rem;
+        }
+        @media (min-width: 1024px) { /* Para pantallas grandes, asegurar que el contenedor no exceda 80% de la viewport */
+            .container {
+                max-width: 80vw;
+            }
         }
         .section-title {
             font-size: 3rem;
@@ -91,6 +96,7 @@
             border-radius: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            padding-bottom: 0; /* Eliminar padding inferior para que la info quede pegada */
         }
         .portfolio-item:hover {
             transform: translateY(-5px);
@@ -104,24 +110,27 @@
         .portfolio-item:hover > img {
             transform: scale(1.05);
         }
+        /* Modificación para portfolio-info para que no sea un overlay */
         .portfolio-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
-            color: white;
+            position: static; /* Cambiado de absolute a static */
+            background: none; /* Eliminado el degradado de fondo */
+            color: #334155; /* Color de texto oscuro para fondo claro */
             padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        .portfolio-item:hover .portfolio-info {
-            transform: translateY(0);
+            padding-top: 1rem; /* Ajuste de padding superior */
+            transform: none; /* Eliminado el transform */
+            text-align: left; /* Alineación de texto a la izquierda */
         }
         .portfolio-info h3 {
-            color: white;
+            color: #1e293b; /* Color de título oscuro */
             margin-bottom: 0.5rem;
+            font-size: 1.5rem; /* Tamaño de fuente para títulos de video */
+            font-weight: 700;
         }
+        .portfolio-info p {
+            color: #475569; /* Color de texto de descripción */
+            font-size: 0.95rem;
+        }
+
         /* Estilos para la nueva sección de navegación de categorías */
         .category-nav-item {
             background-color: #ffffff;
@@ -195,7 +204,9 @@
             padding-bottom: 177.77%; /* 9:16 aspect ratio (16 / 9 * 100) */
             height: 0;
             overflow: hidden;
-            border-radius: 1rem; /* Coincide con el borde redondeado del portfolio-item */
+            border-top-left-radius: 1rem; /* Solo esquinas superiores para el video */
+            border-top-right-radius: 1rem;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); /* Borde interno sutil para el video */
         }
         .video-vertical-container video {
             position: absolute;
@@ -204,7 +215,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Asegura que el video llene el contenedor, recortando si es necesario */
-            border-radius: 1rem; /* Coincide con el borde redondeado del portfolio-item */
+            border-radius: 0; /* No redondeado aquí para que el contenedor lo defina */
         }
     </style>
 </head>
@@ -258,10 +269,10 @@
                             Tu navegador no soporta el tag de video.
                         </video>
                     </div>
+                    <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Video Vertical 1: Título</h3>
-                        <p class="text-sm">Descripción breve del primer video vertical.</p>
-                        <a href="https://imgur.com/a/your-video-album-id-1" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                        <h3 class="text-xl font-bold">Video Vertical 1: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este increíble video vertical. Aquí puedes hablar sobre el concepto, las herramientas utilizadas o el impacto del proyecto.</p>
                     </div>
                 </div>
                 <!-- Video Vertical 2 -->
@@ -272,10 +283,10 @@
                             Tu navegador no soporta el tag de video.
                         </video>
                     </div>
+                    <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Video Vertical 2: Título</h3>
-                        <p class="text-sm">Descripción breve del segundo video vertical.</p>
-                        <a href="https://imgur.com/a/your-video-album-id-2" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                        <h3 class="text-xl font-bold">Video Vertical 2: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este increíble video vertical. Aquí puedes hablar sobre el concepto, las herramientas utilizadas o el impacto del proyecto.</p>
                     </div>
                 </div>
                 <!-- Video Vertical 3 -->
@@ -286,10 +297,10 @@
                             Tu navegador no soporta el tag de video.
                         </video>
                     </div>
+                    <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Video Vertical 3: Título</h3>
-                        <p class="text-sm">Descripción breve del tercer video vertical.</p>
-                        <a href="https://imgur.com/a/your-video-album-id-3" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                        <h3 class="text-xl font-bold">Video Vertical 3: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este increíble video vertical. Aquí puedes hablar sobre el concepto, las herramientas utilizadas o el impacto del proyecto.</p>
                     </div>
                 </div>
             </div>
@@ -456,3 +467,4 @@
 
 </body>
 </html>
+
