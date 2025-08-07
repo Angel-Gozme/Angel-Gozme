@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANGEL GOZME</title>
+    <title>ANGEL GOZME - Portafolio Principal</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter para texto general, y una fuente de display para títulos si se desea, como Montserrat o Poppins -->
+    <!-- Google Fonts: Inter para texto general, y una fuente de display para tÃ­tulos como Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome para iconos de redes sociales y contacto -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,10 +18,11 @@
             color: #334155; /* Gris oscuro para el texto */
             line-height: 1.6;
             scroll-behavior: smooth; /* Desplazamiento suave */
+            overflow-x: hidden; /* Evita el scroll horizontal */
         }
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
-            color: #1e293b; /* Azul oscuro casi negro para títulos */
+            color: #1e293b; /* Azul oscuro casi negro para tÃ­tulos */
         }
         .container {
             max-width: 1280px;
@@ -44,20 +45,20 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background-color: #6366f1; /* Púrpura vibrante */
+            background-color: #6366f1; /* PÃºrpura vibrante para el detalle del tÃ­tulo */
             border-radius: 2px;
         }
         .card {
             background-color: #ffffff;
-            border-radius: 1.5rem; /* Esquinas más redondeadas */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
+            border-radius: 1.5rem; /* Esquinas mÃ¡s redondeadas */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra mÃ¡s pronunciada */
             padding: 2.5rem;
             margin-bottom: 3rem;
             border: 1px solid #e2e8f0; /* Borde sutil */
         }
         .btn-primary {
             display: inline-block;
-            background-image: linear-gradient(to right, #6366f1, #8b5cf6); /* Degradado púrpura */
+            background-image: linear-gradient(to right, #6366f1, #8b5cf6); /* Degradado pÃºrpura original */
             color: #ffffff;
             padding: 0.85rem 2rem;
             border-radius: 0.75rem;
@@ -94,13 +95,13 @@
         .portfolio-item:hover {
             transform: translateY(-5px);
         }
-        .portfolio-item img {
+        .portfolio-item > img { /* Solo aplica a imÃ¡genes directas para no afectar videos */
             width: 100%;
-            height: 250px; /* Altura fija para las imágenes del portafolio */
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            height: 250px; /* Altura fija para las imÃ¡genes del portafolio */
+            object-fit: cover; /* Asegura que la imagen cubra el Ã¡rea sin distorsionarse */
             transition: transform 0.3s ease;
         }
-        .portfolio-item:hover img {
+        .portfolio-item:hover > img {
             transform: scale(1.05);
         }
         .portfolio-info {
@@ -121,41 +122,214 @@
             color: white;
             margin-bottom: 0.5rem;
         }
+        /* Estilos para la nueva secciÃ³n de navegaciÃ³n de categorÃ­as */
+        .category-nav-item {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category-nav-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.08);
+        }
+        .category-nav-item img {
+            width: 150px; /* TamaÃ±o de la imagen referencial */
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para el nuevo encabezado */
+        .hero-header {
+            background-color: #f8fafc; /* Fondo claro como cassie.codes */
+            padding-top: 6rem; /* Espacio superior */
+            padding-bottom: 6rem; /* Espacio inferior */
+            position: relative;
+            overflow: hidden;
+            border-radius: 0; /* Sin bordes redondeados en la parte inferior */
+            box-shadow: none; /* Sin sombra en el encabezado */
+        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        @media (min-width: 768px) { /* Para pantallas medianas y grandes */
+            .hero-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .hero-text {
+                width: 50%;
+                padding-right: 2rem;
+            }
+            .hero-image-container { /* Contenedor para la imagen de perfil con animaciÃ³n */
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center; /* Centrar verticalmente */
+                height: 300px; /* Altura fija para el cÃ¡lculo de parallax */
+            }
+        }
+        .hero-avatar {
+            max-width: 100%; /* Asegura que la imagen se escala dentro de su contenedor */
+            height: auto; /* Mantiene la relaciÃ³n de aspecto */
+            display: block; /* Elimina espacio extra debajo de la imagen */
+            object-fit: contain; /* Asegura que la imagen PNG completa sea visible */
+            box-shadow: none; /* Eliminada la sombra */
+            border: none; /* Eliminado el borde */
+            transition: transform 0.1s ease-out; /* TransiciÃ³n suave para el movimiento */
+        }
+
+        /* Estilos para el contenedor de video vertical */
+        .video-vertical-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.77%; /* 9:16 aspect ratio (16 / 9 * 100) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem; /* Coincide con el borde redondeado del portfolio-item */
+        }
+        .video-vertical-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que el video llene el contenedor, recortando si es necesario */
+            border-radius: 1rem; /* Coincide con el borde redondeado del portfolio-item */
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Sección de Encabezado (Hero) -->
-    <header class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-24 rounded-b-[4rem] shadow-xl overflow-hidden">
-        <div class="container text-center relative z-10">
-            <img src="https://placehold.co/180x180/6366f1/ffffff?text=Tu+Foto" alt="Tu Foto de Perfil" class="w-44 h-44 rounded-full mx-auto mb-8 border-6 border-white shadow-lg object-cover">
-            <h1 class="text-6xl font-extrabold mb-4 leading-tight text-white">¡Hola, soy Angel Gozme!</h1>
-            <p class="text-2xl font-light mb-10 opacity-90">Diseño Gráfico - Audiovisual</p>
-            <div class="space-x-4">
-                <a href="#portafolio" class="btn-primary">Ver Portafolio</a>
-                <a href="#contacto" class="btn-secondary">Contáctame</a>
+    <!-- SecciÃ³n de Encabezado (Hero) - Nuevo estilo -->
+    <header class="hero-header">
+        <div class="container hero-content relative z-10">
+            <!-- Texto y Contacto (lado izquierdo) -->
+            <div class="hero-text mb-10 md:mb-0">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900">Â¡Hola, soy Angel!</h1>
+                <p class="text-xl md:text-2xl font-light mb-8 text-gray-700">Siempre estoy listo para charlar.</p>
+                <!-- Botones Ver Proyectos y ContÃ¡ctame -->
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+                    <a href="#portafolio" class="btn-primary">Ver Proyectos</a>
+                    <a href="#contacto" class="btn-secondary">ContÃ¡ctame</a>
+                </div>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl">
+                    <a href="https://twitter.com/tuusuario" target="_blank" class="text-blue-400 hover:text-blue-600 transition-colors" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- Agrega mÃ¡s iconos de redes sociales si es necesario -->
+                </div>
+            </div>
+
+            <!-- Imagen de Perfil (lado derecho) con animaciÃ³n -->
+            <div class="hero-image-container relative">
+                <img id="heroAvatar" src="https://i.imgur.com/9eSvFcN.png" alt="Angel Gozme Avatar" class="hero-avatar">
             </div>
         </div>
     </header>
 
     <main class="container py-16">
 
-        <!-- Sección Acerca de Mí -->
+        <!-- SecciÃ³n de Proyectos Destacados (Videos Verticales) -->
+        <section id="portafolio" class="card">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="text-xl text-center mb-10 text-gray-700">Explora una selecciÃ³n de mis trabajos mÃ¡s recientes y representativos.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video Vertical 1 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 1: TÃ­tulo</h3>
+                        <p class="text-sm">DescripciÃ³n breve del primer video vertical.</p>
+                        <a href="https://imgur.com/a/your-video-album-id-1" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                    </div>
+                </div>
+                <!-- Video Vertical 2 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 2: TÃ­tulo</h3>
+                        <p class="text-sm">DescripciÃ³n breve del segundo video vertical.</p>
+                        <a href="https://imgur.com/a/your-video-album-id-2" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                    </div>
+                </div>
+                <!-- Video Vertical 3 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 3: TÃ­tulo</h3>
+                        <p class="text-sm">DescripciÃ³n breve del tercer video vertical.</p>
+                        <a href="https://imgur.com/a/your-video-album-id-3" target="_blank" class="btn-secondary mt-3 text-sm">Ver Video</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva SecciÃ³n de NavegaciÃ³n por CategorÃ­as -->
+        <section id="explorar-categorias" class="card">
+            <h2 class="section-title">Explorar por CategorÃ­a</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- BotÃ³n de DiseÃ±o GrÃ¡fico -->
+                <div class="category-nav-item">
+                    <img src="https://placehold.co/150x150/6366f1/ffffff?text=Dise%C3%B1o" alt="Icono DiseÃ±o GrÃ¡fico">
+                    <h3 class="text-3xl font-bold mb-4 text-gray-800">DiseÃ±o GrÃ¡fico</h3>
+                    <a href="diseno-grafico.html" class="btn-primary">Ver Proyectos de DiseÃ±o</a>
+                </div>
+                <!-- BotÃ³n de Videos -->
+                <div class="category-nav-item">
+                    <img src="https://placehold.co/150x150/8b5cf6/ffffff?text=Video" alt="Icono Videos">
+                    <h3 class="text-3xl font-bold mb-4 text-gray-800">Videos</h3>
+                    <a href="videos.html" class="btn-primary">Ver Proyectos de Video</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SecciÃ³n Acerca de MÃ­ -->
         <section id="acerca-de-mi" class="card">
-            <h2 class="section-title">Acerca de Mí</h2>
+            <h2 class="section-title">Acerca de MÃ­</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="text-lg leading-relaxed text-gray-700">
                     <p class="mb-4">
-                        Soy un diseñador gráfico y artista audiovisual con [Número] años de experiencia, especializado en
-                        crear experiencias visuales impactantes y narrativas a través del diseño y la producción multimedia.
+                        Soy un diseÃ±ador grÃ¡fico y artista audiovisual con [NÃºmero] aÃ±os de experiencia, especializado en
+                        crear experiencias visuales impactantes y narrativas a travÃ©s del diseÃ±o y la producciÃ³n multimedia.
                     </p>
                     <p class="mb-4">
-                        Mi pasión radica en transformar ideas complejas en soluciones visuales claras y atractivas,
-                        utilizando herramientas de vanguardia y una sólida comprensión de los principios de diseño.
-                        He trabajado en proyectos que van desde branding y diseño editorial hasta animación 2D/3D y edición de video.
+                        Mi pasiÃ³n radica en transformar ideas complejas en soluciones visuales claras y atractivas,
+                        utilizando herramientas de vanguardia y una sÃ³lida comprensiÃ³n de los principios de diseÃ±o.
+                        He trabajado en proyectos que van desde branding y diseÃ±o editorial hasta animaciÃ³n 2D/3D y ediciÃ³n de video.
                     </p>
                     <p>
-                        Siempre busco nuevos desafíos y oportunidades para colaborar en proyectos creativos que dejen una huella.
+                        Siempre busco nuevos desafÃ­os y oportunidades para colaborar en proyectos creativos que dejen una huella.
                     </p>
                 </div>
                 <div class="flex justify-center">
@@ -164,95 +338,33 @@
             </div>
         </section>
 
-        <!-- Sección de Servicios/Expertise -->
+        <!-- SecciÃ³n de Servicios/Expertise -->
         <section id="servicios" class="card">
             <h2 class="section-title">Mis Servicios</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
                     <i class="fas fa-palette text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Diseño Gráfico</h3>
-                    <p class="text-gray-600">Branding, identidad corporativa, diseño editorial, publicidad, diseño web y UI/UX.</p>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">DiseÃ±o GrÃ¡fico</h3>
+                    <p class="text-gray-600">Branding, identidad corporativa, diseÃ±o editorial, publicidad, diseÃ±o web y UI/UX.</p>
                 </div>
                 <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
                     <i class="fas fa-video text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Producción Audiovisual</h3>
-                    <p class="text-gray-600">Edición de video, motion graphics, animación 2D/3D, post-producción, efectos visuales.</p>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">ProducciÃ³n Audiovisual</h3>
+                    <p class="text-gray-600">EdiciÃ³n de video, motion graphics, animaciÃ³n 2D/3D, post-producciÃ³n, efectos visuales.</p>
                 </div>
                 <div class="bg-indigo-50 p-8 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
                     <i class="fas fa-lightbulb text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">Consultoría Creativa</h3>
-                    <p class="text-gray-600">Conceptualización de proyectos, dirección de arte, estrategia visual.</p>
+                    <h3 class="text-2xl font-semibold mb-2 text-gray-800">ConsultorÃ­a Creativa</h3>
+                    <p class="text-gray-600">ConceptualizaciÃ³n de proyectos, direcciÃ³n de arte, estrategia visual.</p>
                 </div>
-                <!-- Agrega más servicios si es necesario -->
+                <!-- Agrega mÃ¡s servicios si es necesario -->
             </div>
         </section>
 
-        <!-- Sección de Portafolio -->
-        <section id="portafolio" class="card">
-            <h2 class="section-title">Portafolio Destacado</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Proyecto 1: Diseño Gráfico -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Dise%C3%B1o+Gr%C3%A1fico" alt="Proyecto de Diseño Gráfico" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Identidad de Marca "EcoVida"</h3>
-                        <p class="text-sm">Creación de logo, paleta de colores y tipografía para una marca sostenible.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Proyecto 2: Audiovisual -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Motion+Graphics" alt="Proyecto de Motion Graphics" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Animación Explicativa "TechFuture"</h3>
-                        <p class="text-sm">Video animado para startup tecnológica, explicando su producto innovador.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Proyecto 3: Diseño UI/UX -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/c084fc/ffffff?text=Dise%C3%B1o+UI%2FUX" alt="Proyecto de Diseño UI/UX" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold"> UI/UX App "HealthyPlate"</h3>
-                        <p class="text-sm">Interfaz de usuario intuitiva y experiencia de usuario mejorada para una app de nutrición.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Proyecto 4: Edición de Video -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Edici%C3%B3n+de+Video" alt="Proyecto de Edición de Video" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Spot Publicitario "TravelNow"</h3>
-                        <p class="text-sm">Edición y post-producción de un comercial de viajes vibrante.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Proyecto 5: Ilustración Digital -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Ilustraci%C3%B3n" alt="Proyecto de Ilustración Digital" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Serie de Ilustraciones "Urban Vibes"</h3>
-                        <p class="text-sm">Conjunto de ilustraciones digitales inspiradas en la vida urbana.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Proyecto 6: Animación 3D -->
-                <div class="portfolio-item">
-                    <img src="https://placehold.co/600x400/c084fc/ffffff?text=Animaci%C3%B3n+3D" alt="Proyecto de Animación 3D" class="w-full h-auto">
-                    <div class="portfolio-info">
-                        <h3 class="text-xl font-bold">Visualización Arquitectónica 3D</h3>
-                        <p class="text-sm">Renderizados y recorrido virtual 3D para un proyecto arquitectónico.</p>
-                        <a href="#" class="btn-secondary mt-3 text-sm">Ver Detalles</a>
-                    </div>
-                </div>
-                <!-- Agrega más proyectos según sea necesario -->
-            </div>
-        </section>
-
-        <!-- Sección de Contacto -->
+        <!-- SecciÃ³n de Contacto -->
         <section id="contacto" class="card">
-            <h2 class="section-title">Contáctame</h2>
-            <p class="text-xl text-center mb-8 text-gray-700">¿Tienes un proyecto en mente o simplemente quieres saludar? ¡Estaré encantado de escucharte!</p>
+            <h2 class="section-title">ContÃ¡ctame</h2>
+            <p class="text-xl text-center mb-8 text-gray-700">Â¿Tienes un proyecto en mente o simplemente quieres saludar? Â¡EstarÃ© encantado de escucharte!</p>
             <div class="flex flex-col items-center space-y-6">
                 <p class="text-2xl text-gray-800 flex items-center">
                     <i class="fas fa-envelope mr-3 text-indigo-600"></i>
@@ -271,26 +383,76 @@
                     <a href="https://dribbble.com/tuperfil" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors" aria-label="Dribbble">
                         <i class="fab fa-dribbble-square"></i>
                     </a>
-                    <!-- Agrega más iconos de redes sociales relevantes para diseño -->
+                    <!-- Agrega mÃ¡s iconos de redes sociales relevantes para diseÃ±o -->
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Pie de Página -->
-    <footer class="bg-gray-900 text-white py-10 text-center rounded-t-[4rem] shadow-xl">
-        <div class="container">
-            <p class="mb-4">&copy; 2025 Angel Gozme. Todos los derechos reservados.</p>
-            <div class="flex justify-center space-x-6 text-lg">
-                <a href="#acerca-de-mi" class="text-gray-400 hover:text-white transition-colors">Acerca de Mí</a>
-                <a href="#servicios" class="text-gray-400 hover:text-white transition-colors">Servicios</a>
-                <a href="#portafolio" class="text-gray-400 hover:text-white transition-colors">Portafolio</a>
-                <a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Contacto</a>
+    <!-- Pie de PÃ¡gina (Estilo similar a cassie.codes con el color original) -->
+    <footer class="bg-gray-900 text-white py-12 text-center">
+        <div class="container flex flex-col items-center space-y-6">
+            <!-- Social Media Icons -->
+            <div class="flex space-x-6 text-2xl">
+                <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://dribbble.com/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Dribbble">
+                    <i class="fab fa-dribbble"></i>
+                </a>
+                <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <!-- Puedes aÃ±adir mÃ¡s iconos de redes sociales aquÃ­ -->
             </div>
-            <p class="text-sm text-gray-500 mt-6">Diseñado con propósito por Angel Gozme</p>
+
+            <!-- Built With / Designed By -->
+            <div class="text-gray-500 text-sm space-y-2">
+                <p>Construido con <span class="font-semibold text-gray-400">HTML, Tailwind CSS, JavaScript</span></p>
+                <p>DiseÃ±ado con propÃ³sito por <span class="font-semibold text-gray-400">Angel Gozme</span></p>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-gray-500 text-sm mt-4">&copy; 2025 Angel Gozme. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroImageContainer = document.querySelector('.hero-image-container');
+            const heroAvatar = document.getElementById('heroAvatar');
+
+            if (heroImageContainer && heroAvatar) {
+                // Solo activar la animaciÃ³n en pantallas de escritorio
+                if (window.innerWidth >= 768) { // md breakpoint de Tailwind
+                    heroImageContainer.addEventListener('mousemove', (e) => {
+                        const rect = heroImageContainer.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+
+                        const mouseX = e.clientX;
+                        const mouseY = e.clientY;
+
+                        // Calcula el movimiento relativo al centro del contenedor
+                        // Normalizado de -1 a 1, luego escalado por un factor de sensibilidad
+                        const moveX = (mouseX - centerX) / (rect.width / 2) * 10; // Ajusta sensibilidad (10px max)
+                        const moveY = (mouseY - centerY) / (rect.height / 2) * 10; // Ajusta sensibilidad (10px max)
+
+                        heroAvatar.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+
+                    // Reiniciar la posiciÃ³n cuando el mouse sale del contenedor
+                    heroImageContainer.addEventListener('mouseleave', () => {
+                        heroAvatar.style.transform = `translate(0px, 0px)`;
+                    });
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
