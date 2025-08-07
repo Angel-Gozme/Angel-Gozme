@@ -389,7 +389,7 @@
             opacity: 0; /* Se establece a 1 al inicio de la animación */
             pointer-events: none; /* No interfieren con clics */
             animation: fadeUpAndOut 1s ease-out forwards; /* Duración y tipo de animación */
-            bottom: 0px; /* Comienza desde la parte inferior del botón */
+            bottom: 10px; /* Mantiene la posición de inicio ligeramente elevada */
             transform: translateX(-50%); /* Centrado horizontalmente */
             /* left: 50% will be set in JS for slight offset */
         }
@@ -657,11 +657,19 @@
             <!-- Línea divisoria antes de la cuadrícula de diseño gráfico -->
             <div class="flex justify-between items-center mb-8 pt-4 border-t border-gray-200 text-gray-600 text-sm"></div>
 
-            <!-- Contenedor para la única imagen horizontal -->
-            <div class="flex justify-center">
-                <div class="portfolio-item w-full max-w-4xl"> <!-- Ajusta max-w-4xl o similar para controlar el ancho máximo -->
-                    <img src="https://i.imgur.com/4hqLvND.jpeg" alt="Diseño Gráfico Horizontal" class="w-full h-auto rounded-lg">
-                    <!-- Eliminado el portfolio-info para quitar el título y la descripción -->
+            <!-- Contenedor para las imágenes horizontales - ahora en una sola columna -->
+            <div class="grid grid-cols-1 gap-8">
+                <!-- Imagen Horizontal 1 -->
+                <div class="portfolio-item w-full">
+                    <img src="https://i.imgur.com/4hqLvND.jpeg" alt="Diseño Gráfico Horizontal 1" class="w-full h-auto rounded-lg">
+                </div>
+                <!-- Imagen Horizontal 2 -->
+                <div class="portfolio-item w-full">
+                    <img src="https://i.imgur.com/4hqLvND.jpeg" alt="Diseño Gráfico Horizontal 2" class="w-full h-auto rounded-lg">
+                </div>
+                <!-- Imagen Horizontal 3 -->
+                <div class="portfolio-item w-full">
+                    <img src="https://i.imgur.com/4hqLvND.jpeg" alt="Diseño Gráfico Horizontal 3" class="w-full h-auto rounded-lg">
                 </div>
             </div>
 
@@ -939,8 +947,5 @@
 
 </body>
 </html>
-
-
-
 
 
