@@ -25,14 +25,9 @@
             color: #1e293b; /* Azul oscuro casi negro para títulos */
         }
         .container {
-            max-width: 80%; /* Aproximadamente 80% del ancho de pantalla común (1280px * 0.8 = 1024px) */
+            max-width: 80vw; /* La página ocupa el 80% del ancho del viewport */
             margin: 0 auto;
             padding: 2rem;
-        }
-        @media (min-width: 80%) { /* Para pantallas grandes, asegurar que el contenedor no exceda 80% de la viewport */
-            .container {
-                max-width: 80vw;
-            }
         }
         .section-title {
             font-size: 3rem;
@@ -41,6 +36,11 @@
             text-align: center;
             position: relative;
             padding-bottom: 1rem;
+            transition: transform 0.3s ease, color 0.3s ease; /* Animación para el título */
+        }
+        .section-title:hover {
+            transform: scale(1.02); /* Ligeramente más grande al pasar el mouse */
+            color: #6366f1; /* Cambio de color al pasar el mouse */
         }
         .section-title::after {
             content: '';
@@ -60,6 +60,13 @@
             padding: 2.5rem;
             margin-bottom: 3rem;
             border: 1px solid #e2e8f0; /* Borde sutil */
+            opacity: 0; /* Oculto por defecto para la animación de aparición */
+            transform: translateY(20px); /* Ligeramente hacia abajo para la animación */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición para la aparición */
+        }
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .btn-primary {
             display: inline-block;
@@ -73,8 +80,8 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px); /* Mayor elevación */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
         }
         .btn-secondary {
             display: inline-block;
@@ -84,22 +91,25 @@
             border-radius: 0.5rem;
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-secondary:hover {
             background-color: #cbd5e1;
             color: #1e293b;
+            transform: translateY(-3px); /* Mayor elevación */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
         }
         .portfolio-item {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: none; /* Sombra eliminada de los elementos individuales */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadir transición para box-shadow */
             padding-bottom: 0; /* Eliminar padding inferior para que la info quede pegada */
         }
         .portfolio-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02); /* Más elevación y un poco más de escala */
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15); /* Sombra más dramática al hacer hover */
         }
         .portfolio-item > img { /* Solo aplica a imágenes directas para no afectar videos */
             width: 100%;
@@ -139,18 +149,23 @@
             padding: 2.5rem;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Usar flexbox para alinear contenido */
+            flex-direction: column; /* Apilar contenido verticalmente */
+            align-items: center; /* Centrar horizontalmente */
+            justify-content: center; /* Centrar verticalmente */
         }
         .category-nav-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.08);
         }
-        .category-nav-item img {
-            width: 150px; /* Tamaño de la imagen referencial */
-            height: 150px;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            margin: 0 auto 1.5rem auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .category-nav-item i { /* Estilo para los iconos de categoría */
+            font-size: 5rem; /* Tamaño del icono */
+            color: #6366f1; /* Color púrpura del icono */
+            margin-bottom: 1.5rem; /* Espacio debajo del icono */
+        }
+        .category-nav-item .btn-primary,
+        .category-nav-item .btn-secondary {
+            margin-top: 0; /* Eliminar margen superior si lo hubiera */
         }
 
         /* Estilos para el nuevo encabezado */
@@ -162,7 +177,17 @@
             overflow: hidden;
             border-radius: 0; /* Sin bordes redondeados en la parte inferior */
             box-shadow: none; /* Sin sombra en el encabezado */
+            /* Animación de fondo */
+            background: linear-gradient(135deg, #f8fafc, #e0e7ff, #f8fafc);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
         }
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .hero-content {
             display: flex;
             flex-direction: column;
@@ -217,30 +242,269 @@
             object-fit: cover; /* Asegura que el video llene el contenedor, recortando si es necesario */
             border-radius: 0; /* No redondeado aquí para que el contenedor lo defina */
         }
+
+        /* Estilos para el video horizontal */
+        .video-horizontal-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem; /* Redondeado para el contenedor */
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); /* Borde interno sutil */
+        }
+        .video-horizontal-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        /* Estilos para la sección de Diseño Gráfico (Redes Sociales) */
+        .social-media-design-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Una columna por defecto */
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { /* Dos columnas en pantallas medianas y grandes */
+            .social-media-design-grid {
+                grid-template-columns: 1fr 1.5fr; /* Columna izquierda más pequeña, derecha más grande */
+            }
+        }
+
+        .small-graphics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2x2 grid for small graphics */
+            gap: 1rem;
+        }
+
+        .facebook-post-frame {
+            background-color: #f0f2f5; /* Color de fondo de Facebook */
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para posicionar los elementos animados */
+            padding-bottom: 0; /* Ajuste para que el contenido se pegue al borde */
+        }
+        .facebook-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e4e6eb;
+        }
+        .facebook-profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            object-fit: cover;
+        }
+        .facebook-name {
+            font-weight: 600;
+            color: #050505;
+            margin-right: 0.25rem; /* Espacio entre el nombre y el tiempo, ajustado */
+        }
+        .facebook-time {
+            font-size: 0.8rem;
+            color: #65676b;
+            display: flex;
+            align-items: center;
+        }
+        .facebook-time i {
+            margin-left: 0.25rem; /* Espacio entre el texto y el icono de globo */
+        }
+        .facebook-options {
+            margin-left: auto;
+            color: #65676b;
+        }
+        .facebook-content {
+            padding: 0; /* Eliminar padding para que la imagen ocupe todo el ancho */
+        }
+        .facebook-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0; /* No redondeado aquí, el frame lo maneja */
+        }
+        .facebook-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.75rem 1rem;
+            border-top: 1px solid #e4e6eb;
+            color: #65676b;
+            font-size: 0.9rem;
+        }
+        .facebook-action-button {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative; /* Necesario para posicionar el contenedor de animación */
+            /* Removido overflow: hidden; para que los iconos puedan salir del área del botón */
+        }
+        .facebook-action-button:hover {
+            background-color: #e4e6eb;
+        }
+        .facebook-action-button i {
+            margin-right: 0.5rem;
+        }
+        .facebook-comments-summary {
+            display: none; /* Oculta la sección de comentarios */
+        }
+
+        /* Animación para los iconos de "Me gusta" */
+        @keyframes fadeUpAndOut {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1); /* Inicia en la posición base del botón */
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-70px) scale(1.2); /* Se mueve hacia arriba y se desvanece */
+            }
+        }
+
+        .animated-like-icon {
+            position: absolute;
+            font-size: 1.5rem; /* Tamaño de los iconos animados */
+            opacity: 0; /* Se establece a 1 al inicio de la animación */
+            pointer-events: none; /* No interfieren con clics */
+            animation: fadeUpAndOut 1s ease-out forwards; /* Duración y tipo de animación */
+            bottom: 0px; /* Comienza desde la parte inferior del botón */
+            transform: translateX(-50%); /* Centrado horizontalmente */
+            /* left: 50% will be set in JS for slight offset */
+        }
+
+        /* Estilo para el botón "Me gusta" cuando está activado */
+        .facebook-action-button.liked {
+            color: #1877f2; /* Azul de Facebook para "Me gusta" */
+            font-weight: 600;
+            transform: scale(1.05); /* Ligeramente más grande */
+            transition: all 0.2s ease-in-out; /* Transición suave para el cambio de estado */
+        }
+        .facebook-action-button.liked i {
+            color: #1877f2; /* Asegurar que el icono también sea azul */
+            font-size: 1.1em; /* Ligeramente más grande */
+        }
+
+        /* Estilos para iconos de redes sociales en el header/footer */
+        .social-icon-link {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icon-link:hover {
+            transform: translateY(-5px) scale(1.1); /* Ligero rebote y escala */
+            color: #6366f1; /* Color púrpura al pasar el mouse */
+        }
+        /* Cursor de escritura para simular el typing */
+        .typing-cursor {
+            position: relative;
+            display: inline-block; /* Importante para que el cursor siga el texto */
+        }
+        .typing-cursor::after {
+            content: ''; /* No character, we'll use a border for the cursor */
+            display: inline-block;
+            width: 0; /* No intrinsic width for the pseudo-element itself */
+            height: 1em; /* Height of the cursor, relative to font size */
+            vertical-align: middle; /* Align with text baseline */
+            margin-left: 0.1em; /* Small space between text and cursor */
+            border-right: 2px solid black; /* This creates the thin vertical line */
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-right-color: transparent } /* Animate the border color */
+            50% { border-right-color: black; }
+        }
+
+        /* Estilo para el título del hero al pasar el mouse */
+        #heroTitle {
+            transition: color 0.3s ease; /* Transición suave para el cambio de color */
+        }
+        #heroTitle:hover {
+            color: #6366f1; /* Color del botón "Ver Proyectos" */
+        }
+
+        /* Estilos para el overlay del video con el botón de play */
+        .video-overlay {
+            opacity: 1; /* Visible por defecto cuando el video está pausado */
+            z-index: 10; /* Asegura que esté por encima del video */
+            transition: opacity 0.3s ease; /* Transición suave para el desvanecimiento */
+        }
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none; /* Deshabilita clics cuando está oculto */
+        }
+        .video-overlay i {
+            transition: color 0.3s ease; /* Transición suave para el color del icono al pasar el mouse */
+        }
+        .video-overlay i:hover {
+            color: #6366f1; /* Color púrpura al pasar el mouse */
+        }
+
+        /* Estilos para el botón de reproducción de música flotante */
+        .music-play-button {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #6366f1; /* Púrpura principal */
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+        }
+        .music-play-button:hover {
+            background-color: #8b5cf6; /* Tono más claro al pasar el mouse */
+            transform: scale(1.1);
+        }
+        .music-play-button.hidden {
+            display: none; /* Oculta el botón después de la primera interacción */
+        }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Fondo musical (reemplaza el src con tu propia música royalty-free) -->
+    <audio id="backgroundMusic" loop volume="0.02"> <!-- Volumen ajustado a 0.02 -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Botón flotante para reproducir música -->
+    <div id="musicPlayButton" class="music-play-button md:block hidden">
+        <i class="fas fa-music"></i>
+    </div>
 
     <!-- Sección de Encabezado (Hero) - Nuevo estilo -->
     <header class="hero-header">
         <div class="container hero-content relative z-10">
             <!-- Texto y Contacto (lado izquierdo) -->
             <div class="hero-text mb-10 md:mb-0">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900">¡Hola, soy Angel!</h1>
-                <p class="text-xl md:text-2xl font-light mb-8 text-gray-700">Siempre estoy listo para charlar.</p>
-                <!-- Botones Ver Proyectos y Contáctame -->
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900" id="heroTitle"></h1>
+                <p class="text-xl md:text-2xl font-light mb-8 text-gray-700" id="heroSubtitle"></p>
+                <!-- Botones Ver Proyectos y Contáctame en el Header -->
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
                     <a href="#portafolio" class="btn-primary">Ver Proyectos</a>
                     <a href="#contacto" class="btn-secondary">Contáctame</a>
                 </div>
                 <div class="flex justify-center md:justify-start space-x-4 text-2xl">
-                    <a href="https://twitter.com/tuusuario" target="_blank" class="text-blue-400 hover:text-blue-600 transition-colors" aria-label="Twitter">
+                    <a href="https://twitter.com/tuusuario" target="_blank" class="text-blue-400 hover:text-blue-600 transition-colors social-icon-link" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors social-icon-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors" aria-label="Instagram">
+                    <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors social-icon-link" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <!-- Agrega más iconos de redes sociales si es necesario -->
@@ -256,18 +520,41 @@
 
     <main class="container py-16">
 
-        <!-- Sección de Proyectos Destacados (Videos Verticales) -->
+        <!-- Sección Principal de Proyectos Destacados (solo con botones de categoría) -->
         <section id="portafolio" class="card">
-            <h2 class="section-title">Proyectos Destacados</h2>
-            <p class="text-xl text-center mb-10 text-gray-700">Explora una selección de mis trabajos más recientes y representativos.</p>
+            <h2 class="section-title">Explorar Mis Proyectos</h2>
+            <p class="text-xl text-center mb-10 text-gray-700">Selecciona una categoría para ver mis trabajos.</p>
+
+            <!-- Botones de Navegación por Categorías (con iconos) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Botón de Videos -->
+                <a href="#videos-section" class="category-nav-item">
+                    <i class="fas fa-video"></i> <!-- Icono de video -->
+                    <span class="btn-primary">Ver Videos</span>
+                </a>
+                <!-- Botón de Diseño Gráfico -->
+                <a href="#diseno-grafico-section" class="category-nav-item">
+                    <i class="fas fa-palette"></i> <!-- Icono de paleta para diseño gráfico -->
+                    <span class="btn-primary">Ver Diseño Gráfico</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Sección de Videos (Ahora una card independiente) -->
+        <section id="videos-section" class="card">
+            <h2 class="section-title">Mis Proyectos de Video</h2>
+            <p class="text-xl text-center mb-10 text-gray-700">Explora una selección de mis trabajos audiovisuales.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Video Vertical 1 -->
                 <div class="portfolio-item">
                     <div class="video-vertical-container">
-                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
                             <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
                             Tu navegador no soporta el tag de video.
                         </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
                     </div>
                     <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
@@ -278,10 +565,13 @@
                 <!-- Video Vertical 2 -->
                 <div class="portfolio-item">
                     <div class="video-vertical-container">
-                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
                             <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
                             Tu navegador no soporta el tag de video.
                         </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
                     </div>
                     <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
@@ -292,10 +582,13 @@
                 <!-- Video Vertical 3 -->
                 <div class="portfolio-item">
                     <div class="video-vertical-container">
-                        <video controls loop muted autoplay class="w-full h-full object-cover">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
                             <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
                             Tu navegador no soporta el tag de video.
                         </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
                     </div>
                     <!-- Título y descripción debajo del video -->
                     <div class="portfolio-info">
@@ -304,48 +597,149 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Nueva Sección de Navegación por Categorías -->
-        <section id="explorar-categorias" class="card">
-            <h2 class="section-title">Explorar por Categoría</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Botón de Diseño Gráfico -->
-                <div class="category-nav-item">
-                    <img src="https://placehold.co/150x150/6366f1/ffffff?text=Dise%C3%B1o" alt="Icono Diseño Gráfico">
-                    <h3 class="text-3xl font-bold mb-4 text-gray-800">Diseño Gráfico</h3>
-                    <a href="diseno-grafico.html" class="btn-primary">Ver Proyectos de Diseño</a>
+            <!-- Espacio para un video horizontal -->
+            <div class="mt-12 mb-12">
+                <div class="portfolio-item">
+                    <div class="video-horizontal-container">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/your-horizontal-video-id.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Horizontal: Título de tu Proyecto</h3>
+                        <p class="text-sm">Aquí puedes describir este video horizontal, su propósito y lo que lo hace especial.</p>
+                    </div>
                 </div>
-                <!-- Botón de Videos -->
-                <div class="category-nav-item">
-                    <img src="https://placehold.co/150x150/8b5cf6/ffffff?text=Video" alt="Icono Videos">
-                    <h3 class="text-3xl font-bold mb-4 text-gray-800">Videos</h3>
-                    <a href="videos.html" class="btn-primary">Ver Proyectos de Video</a>
+            </div>
+
+            <!-- Otros tres videos verticales -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video Vertical 4 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 4: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este video vertical.</p>
+                    </div>
+                </div>
+                <!-- Video Vertical 5 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 5: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este video vertical.</p>
+                    </div>
+                </div>
+                <!-- Video Vertical 6 -->
+                <div class="portfolio-item">
+                    <div class="video-vertical-container">
+                        <video controls preload="metadata" class="w-full h-full object-cover">
+                            <source src="https://i.imgur.com/6ZYS0Tj.mp4" type="video/mp4">
+                            Tu navegador no soporta el tag de video.
+                        </video>
+                        <div class="video-overlay flex items-center justify-center absolute inset-0 bg-black bg-opacity-50 cursor-pointer transition-opacity duration-300">
+                            <i class="fas fa-play-circle text-white text-6xl opacity-75 hover:opacity-100 transition-colors duration-200"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="text-xl font-bold">Video Vertical 6: Título de tu Proyecto</h3>
+                        <p class="text-sm">Breve descripción de este video vertical.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección Acerca de Mí -->
-        <section id="acerca-de-mi" class="card">
-            <h2 class="section-title">Acerca de Mí</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="text-lg leading-relaxed text-gray-700">
-                    <p class="mb-4">
-                        Soy un diseñador gráfico y artista audiovisual con [Número] años de experiencia, especializado en
-                        crear experiencias visuales impactantes y narrativas a través del diseño y la producción multimedia.
-                    </p>
-                    <p class="mb-4">
-                        Mi pasión radica en transformar ideas complejas en soluciones visuales claras y atractivas,
-                        utilizando herramientas de vanguardia y una sólida comprensión de los principios de diseño.
-                        He trabajado en proyectos que van desde branding y diseño editorial hasta animación 2D/3D y edición de video.
-                    </p>
-                    <p>
-                        Siempre busco nuevos desafíos y oportunidades para colaborar en proyectos creativos que dejen una huella.
-                    </p>
+        <!-- Sección de Diseño Gráfico (Redes Sociales) -->
+        <section id="diseno-grafico-section" class="card">
+            <h2 class="section-title">Mis Proyectos de Diseño Gráfico</h2>
+            <p class="text-xl text-center mb-10 text-gray-700">Descubre mi trabajo en branding, ilustración y diseño web.</p>
+
+            <!-- Línea divisoria antes de la cuadrícula de diseño gráfico -->
+            <div class="flex justify-between items-center mb-8 pt-4 border-t border-gray-200 text-gray-600 text-sm"></div>
+
+            <div class="social-media-design-grid">
+                <!-- Columna Izquierda: Pequeñas Piezas Gráficas -->
+                <div class="small-graphics-grid">
+                    <!-- Gráfica Pequeña 1 -->
+                    <div class="portfolio-item">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 1" class="w-full h-auto object-cover rounded-lg">
+                        <!-- Título y descripción eliminados -->
+                    </div>
+                    <!-- Gráfica Pequeña 2 -->
+                    <div class="portfolio-item">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 2" class="w-full h-auto object-cover rounded-lg">
+                        <!-- Título y descripción eliminados -->
+                    </div>
+                    <!-- Gráfica Pequeña 3 -->
+                    <div class="portfolio-item">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 3" class="w-full h-auto object-cover rounded-lg">
+                        <!-- Título y descripción eliminados -->
+                    </div>
+                    <!-- Gráfica Pequeña 4 -->
+                    <div class="portfolio-item">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 4" class="w-full h-auto object-cover rounded-lg">
+                        <!-- Título y descripción eliminados -->
+                    </div>
                 </div>
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/400x300/e0e0e0/333333?text=Imagen+Personal" alt="Imagen Personal" class="rounded-xl shadow-lg max-w-full h-auto">
+
+                <!-- Columna Derecha: Marco de Facebook con Gráfica Grande -->
+                <div class="relative facebook-post-frame">
+                    <div class="facebook-header">
+                        <img src="https://i.imgur.com/9eSvFcN.png" alt="Facebook Profile" class="facebook-profile-pic">
+                        <div>
+                            <span class="facebook-name">El Mollecito</span>
+                            <span class="facebook-time">Hace 1 hora <i class="fas fa-globe-americas ml-1"></i></span>
+                        </div>
+                        <i class="fas fa-ellipsis-h facebook-options"></i>
+                    </div>
+                    <div class="facebook-content">
+                        <!-- Descripción "Disfruta en familia..." eliminada -->
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Chancho al Palo" class="w-full h-auto">
+                    </div>
+                    <div class="facebook-actions">
+                        <div class="facebook-action-button" id="likeButton">
+                            <i class="far fa-thumbs-up"></i> Me gusta
+                            <div id="likeAnimationContainer" class="absolute inset-0 pointer-events-none">
+                                <!-- Animated icons will be injected here -->
+                            </div>
+                        </div>
+                        <div class="facebook-action-button">
+                            <i class="far fa-comment"></i> Comentar
+                        </div>
+                        <div class="facebook-action-button">
+                            <i class="fas fa-share"></i> Compartir
+                        </div>
+                    </div>
+                    <!-- "5 comentarios" eliminado -->
+                    <!-- Sección de comentarios eliminada -->
+
+                    <!-- Emojis flotantes eliminados -->
                 </div>
+            </div>
+            <div class="flex justify-between items-center mt-8 pt-4 border-t border-gray-200 text-gray-600 text-sm">
+                <span>REDES SOCIALES</span>
+                <span>ANGEL GOZME</span>
             </div>
         </section>
 
@@ -382,19 +776,16 @@
                     Email: <a href="mailto:angel.gozme@gmail.com" class="text-blue-600 hover:underline ml-2">angel.gozme@gmail.com</a>
                 </p>
                 <div class="flex space-x-6 text-3xl">
-                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors" aria-label="LinkedIn">
+                    <a href="https://twitter.com/tuusuario" target="_blank" class="text-blue-400 hover:text-blue-600 transition-colors social-icon-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-blue-700 hover:text-blue-900 transition-colors social-icon-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/tuusuario" target="_blank" class="text-gray-800 hover:text-black transition-colors" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
+                    <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors social-icon-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.behance.net/tuperfil" target="_blank" class="text-blue-500 hover:text-blue-700 transition-colors" aria-label="Behance">
-                        <i class="fab fa-behance-square"></i>
-                    </a>
-                    <a href="https://dribbble.com/tuperfil" target="_blank" class="text-pink-500 hover:text-pink-700 transition-colors" aria-label="Dribbble">
-                        <i class="fab fa-dribbble-square"></i>
-                    </a>
-                    <!-- Agrega más iconos de redes sociales relevantes para diseño -->
+                    <!-- Agrega más iconos de redes sociales si es necesario -->
                 </div>
             </div>
         </section>
@@ -406,16 +797,16 @@
         <div class="container flex flex-col items-center space-y-6">
             <!-- Social Media Icons -->
             <div class="flex space-x-6 text-2xl">
-                <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors social-icon-link" aria-label="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+                <a href="https://github.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors social-icon-link" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://dribbble.com/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Dribbble">
+                <a href="https://dribbble.com/tuperfil" target="_blank" class="text-gray-400 hover:text-white transition-colors social-icon-link" aria-label="Dribbble">
                     <i class="fab fa-dribbble"></i>
                 </a>
-                <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                <a href="https://www.instagram.com/tuusuario" target="_blank" class="text-gray-400 hover:text-white transition-colors social-icon-link" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
                 <!-- Puedes añadir más iconos de redes sociales aquí -->
@@ -433,9 +824,57 @@
     </footer>
 
     <script>
+        // Configuración de audio para el sonido de tecleo
+        let audioContext;
+        let typingOscillator;
+        let typingGainNode;
+
+        function initTypingAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                typingOscillator = audioContext.createOscillator();
+                typingGainNode = audioContext.createGain();
+
+                typingOscillator.connect(typingGainNode);
+                typingGainNode.connect(audioContext.destination);
+
+                typingOscillator.type = 'sine'; // Tipo de onda para el sonido
+                typingOscillator.frequency.setValueAtTime(880, audioContext.currentTime); // Frecuencia del sonido (tono)
+                typingOscillator.start(); // Inicia el oscilador una vez, funciona continuamente
+                typingGainNode.gain.setValueAtTime(0, audioContext.currentTime); // Mantiene el sonido en silencio por defecto
+            }
+        }
+
+        function playTypingClick() {
+            // Reanuda el contexto de audio si está suspendido (necesario por políticas de autoplay de navegadores)
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            // Si el contexto de audio no ha sido inicializado, lo inicializa
+            if (!audioContext) {
+                initTypingAudio();
+                // Si aún está suspendido después de init, intenta reanudar de nuevo
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+            }
+
+            const now = audioContext.currentTime;
+            // Cancela cualquier cambio de ganancia programado para evitar clics dobles o pegados
+            typingGainNode.gain.cancelScheduledValues(now);
+            // Establece un volumen pequeño y luego lo desvanece rápidamente para un efecto de "clic"
+            typingGainNode.gain.setValueAtTime(0.05, now); // Volumen inicial del clic
+            typingGainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.03); // Decaimiento muy rápido
+        }
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const heroImageContainer = document.querySelector('.hero-image-container');
             const heroAvatar = document.getElementById('heroAvatar');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const videos = document.querySelectorAll('video'); // Selecciona todos los elementos de video
+            const musicPlayButton = document.getElementById('musicPlayButton');
 
             if (heroImageContainer && heroAvatar) {
                 // Solo activar la animación en pantallas de escritorio
@@ -462,10 +901,230 @@
                     });
                 }
             }
+
+            // Lógica para la animación del botón "Me gusta"
+            const likeButton = document.getElementById('likeButton');
+            if (likeButton) {
+                likeButton.addEventListener('click', (event) => {
+                    // Prevenir el comportamiento predeterminado del botón si es un enlace o formulario
+                    event.preventDefault();
+
+                    // Alternar la clase 'liked' para el estilo persistente
+                    likeButton.classList.toggle('liked');
+
+                    const animationContainer = likeButton.querySelector('#likeAnimationContainer');
+                    if (animationContainer) {
+                        // Crear icono de pulgar arriba
+                        const thumbsUpIcon = document.createElement('i');
+                        thumbsUpIcon.className = 'fas fa-thumbs-up text-blue-600 animated-like-icon';
+                        // Posicionar ligeramente a la izquierda del centro para el pulgar
+                        thumbsUpIcon.style.left = 'calc(50% - 15px)';
+                        animationContainer.appendChild(thumbsUpIcon);
+
+                        // Crear icono de corazón
+                        const heartIcon = document.createElement('i');
+                        heartIcon.className = 'fas fa-heart text-red-500 animated-like-icon';
+                        // Posicionar ligeramente a la derecha del centro para el corazón
+                        heartIcon.style.left = 'calc(50% + 15px)';
+                        animationContainer.appendChild(heartIcon);
+
+                        // Eliminar iconos después de la animación
+                        // Usamos setTimeout para asegurar que la animación se dispare antes de intentar eliminar
+                        setTimeout(() => {
+                            thumbsUpIcon.remove();
+                            heartIcon.remove();
+                        }, 1000); // Coincide con la duración de la animación (1s)
+                    }
+                });
+            }
+
+            // Lógica para la animación de aparición de secciones al hacer scroll
+            const cards = document.querySelectorAll('.card');
+            const observerOptions = {
+                root: null, /* viewport */
+                rootMargin: '0px',
+                threshold: 0.1 /* 10% del elemento visible para activar */
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); /* Dejar de observar una vez visible */
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Lógica para la animación de escritura
+            const heroTitle = document.getElementById('heroTitle');
+            const heroSubtitle = document.getElementById('heroSubtitle');
+
+            const originalTitleText = "¡Hola, soy Angel!";
+            const originalSubtitleText = "Siempre estoy listo para charlar.";
+
+            // Limpiar el contenido inicial para que la animación lo escriba
+            heroTitle.textContent = '';
+            heroSubtitle.textContent = '';
+
+            // Función typeWriter modificada para controlar el cursor persistente y el sonido
+            function typeWriter(element, text, speed, keepCursor = false, playSound = false, callback) {
+                let i = 0;
+                element.classList.add('typing-cursor'); // Añadir cursor
+
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        if (playSound) {
+                            playTypingClick(); // Reproducir sonido al escribir cada carácter
+                        }
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        if (!keepCursor) {
+                            element.classList.remove('typing-cursor'); // Quitar cursor si no se debe mantener
+                        }
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                }
+                type();
+            }
+
+            // Inicializar el contexto de audio en la primera interacción del usuario o al cargar
+            // Esto es crucial para sortear las políticas de autoplay de los navegadores.
+            // Para este caso, lo inicializamos al inicio de la animación de escritura.
+            initTypingAudio();
+
+            // Iniciar la animación del título con cursor persistente y sonido, y luego la del subtítulo
+            typeWriter(heroTitle, originalTitleText, 150, true, true, () => { // `150`ms para más lento, `true` para sonido
+                setTimeout(() => {
+                    typeWriter(heroSubtitle, originalSubtitleText, 50, false, false); // Subtítulo sin sonido
+                }, 500); // Pequeña pausa entre el título y el subtítulo
+            });
+
+            // Lógica para controlar la música de fondo con la reproducción de videos
+            function updateBackgroundMusicState() {
+                let anyVideoPlaying = false;
+                videos.forEach(video => {
+                    if (!video.paused && !video.ended) {
+                        anyVideoPlaying = true;
+                    }
+                });
+
+                if (anyVideoPlaying) {
+                    backgroundMusic.pause();
+                } else {
+                    // Solo intentar reproducir si no está ya reproduciéndose y no ha terminado
+                    if (backgroundMusic.paused || backgroundMusic.ended) {
+                        backgroundMusic.play().catch(e => {
+                            // Este catch es importante para manejar errores de autoplay (navegadores)
+                            console.log("Autoplay prevented for background music:", e);
+                            // Podrías añadir un botón de "Reproducir música" si el autoplay falla
+                        });
+                    }
+                }
+            }
+
+            // Adjuntar listeners a todos los videos y sus overlays
+            videos.forEach(video => {
+                const videoContainer = video.closest('.portfolio-item'); // Contenedor padre del video
+                const overlay = videoContainer ? videoContainer.querySelector('.video-overlay') : null;
+
+                // Si hay un overlay, controla su visibilidad y el clic
+                if (overlay) {
+                    // Muestra el overlay si el video está pausado o no ha cargado lo suficiente para reproducirse
+                    if (video.paused || video.readyState < 3) {
+                        overlay.classList.remove('hidden');
+                    } else {
+                        overlay.classList.add('hidden');
+                    }
+
+                    // Click en el overlay para reproducir/pausar el video
+                    overlay.addEventListener('click', () => {
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+
+                    // Oculta el overlay cuando el video se reproduce
+                    video.addEventListener('play', () => {
+                        overlay.classList.add('hidden');
+                        updateBackgroundMusicState(); // Actualiza el estado de la música
+                    });
+
+                    // Muestra el overlay cuando el video se pausa o termina
+                    video.addEventListener('pause', () => {
+                        overlay.classList.remove('hidden');
+                        updateBackgroundMusicState(); // Actualiza el estado de la música
+                    });
+                    video.addEventListener('ended', () => {
+                        overlay.classList.remove('hidden');
+                        updateBackgroundMusicState(); // Actualiza el estado de la música
+                    });
+                } else {
+                    // Si no hay overlay (por ejemplo, videos que no están dentro de un contenedor .video-vertical-container/.horizontal-container),
+                    // solo se gestiona la música de fondo.
+                    video.addEventListener('play', updateBackgroundMusicState);
+                    video.addEventListener('pause', updateBackgroundMusicState);
+                    video.addEventListener('ended', updateBackgroundMusicState);
+                }
+            });
+
+            // Lógica para el botón de reproducción de música flotante
+            if (musicPlayButton) {
+                musicPlayButton.addEventListener('click', () => {
+                    if (backgroundMusic.paused) {
+                        backgroundMusic.play().then(() => {
+                            musicPlayButton.classList.add('hidden'); // Oculta el botón una vez que la música empieza a sonar
+                        }).catch(e => {
+                            console.log("Error al reproducir música desde el botón:", e);
+                        });
+                    }
+                });
+
+                // Ocultar el botón si la música ya está reproduciéndose (por ejemplo, si el usuario ya interactuó)
+                backgroundMusic.addEventListener('play', () => {
+                    musicPlayButton.classList.add('hidden');
+                });
+
+                // Mostrar el botón si la música se pausa manualmente (no por un video)
+                backgroundMusic.addEventListener('pause', () => {
+                    let anyVideoPlaying = false;
+                    videos.forEach(video => {
+                        if (!video.paused && !video.ended) {
+                            anyVideoPlaying = true;
+                        }
+                    });
+                    if (!anyVideoPlaying) { // Solo mostrar si no hay videos reproduciéndose
+                        musicPlayButton.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Intentar reproducir la música de fondo al inicio (puede ser bloqueado por el navegador)
+            backgroundMusic.play().catch(e => {
+                console.log("Autoplay prevented for initial background music:", e);
+                // Si el autoplay falla, nos aseguramos de que el botón de música sea visible
+                if (musicPlayButton) {
+                    musicPlayButton.classList.remove('hidden');
+                }
+            });
+
+            // Asegurarse de que el estado de la música se actualice si los videos se reproducen automáticamente (aunque ya no lo hagan)
+            updateBackgroundMusicState();
         });
     </script>
 
 </body>
 </html>
+
+
 
 
