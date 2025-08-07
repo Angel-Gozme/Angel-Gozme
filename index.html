@@ -990,10 +990,11 @@
             // Para este caso, lo inicializamos al inicio de la animación de escritura.
             initTypingAudio();
 
-            // Iniciar la animación del título con cursor persistente y sonido, y luego la del subtítulo
+            // Iniciar la animación del título con cursor persistente y sonido
             typeWriter(heroTitle, originalTitleText, 150, true, true, () => { // `150`ms para más lento, `true` para sonido
                 setTimeout(() => {
-                    typeWriter(heroSubtitle, originalSubtitleText, 50, false, false); // Subtítulo sin sonido
+                    // El subtítulo ahora aparece instantáneamente
+                    heroSubtitle.textContent = originalSubtitleText;
                 }, 500); // Pequeña pausa entre el título y el subtítulo
             });
 
