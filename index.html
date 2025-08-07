@@ -25,7 +25,7 @@
             color: #1e293b; /* Azul oscuro casi negro para títulos */
         }
         .container {
-            max-width: 80vw; /* La página ocupa el 80% del ancho del viewport */
+            max-width: 70vw; /* La página ocupa el 70% del ancho del viewport */
             margin: 0 auto;
             padding: 2rem;
         }
@@ -272,6 +272,7 @@
         @media (min-width: 768px) { /* Dos columnas en pantallas medianas y grandes */
             .social-media-design-grid {
                 grid-template-columns: 1fr 1.5fr; /* Columna izquierda más pequeña, derecha más grande */
+                align-items: start; /* Alinea los elementos al inicio de su celda de la cuadrícula */
             }
         }
 
@@ -280,6 +281,18 @@
             grid-template-columns: repeat(2, 1fr); /* 2x2 grid for small graphics */
             gap: 1rem;
         }
+
+        /* Asegura que los elementos del small-graphics-grid sean cuadrados */
+        .small-graphics-grid .portfolio-item {
+            aspect-ratio: 1 / 1; /* Hace que el elemento sea cuadrado */
+            padding-bottom: 0; /* Anula el padding-bottom anterior si existiera para aspect-ratio */
+        }
+        .small-graphics-grid .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cubre el espacio manteniendo la relación de aspecto */
+        }
+
 
         .facebook-post-frame {
             background-color: #f0f2f5; /* Color de fondo de Facebook */
@@ -444,46 +457,10 @@
         .video-overlay i:hover {
             color: #6366f1; /* Color púrpura al pasar el mouse */
         }
-
-        /* Estilos para el botón de reproducción de música flotante */
-        .music-play-button {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background-color: #6366f1; /* Púrpura principal */
-            color: white;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            z-index: 1000; /* Asegura que esté por encima de todo */
-        }
-        .music-play-button:hover {
-            background-color: #8b5cf6; /* Tono más claro al pasar el mouse */
-            transform: scale(1.1);
-        }
-        .music-play-button.hidden {
-            display: none; /* Oculta el botón después de la primera interacción */
-        }
     </style>
 </head>
 <body class="antialiased">
-    <!-- Fondo musical (reemplaza el src con tu propia música royalty-free) -->
-    <audio id="backgroundMusic" loop volume="0.02"> <!-- Volumen ajustado a 0.02 -->
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-
-    <!-- Botón flotante para reproducir música -->
-    <div id="musicPlayButton" class="music-play-button md:block hidden">
-        <i class="fas fa-music"></i>
-    </div>
+    <!-- Se eliminó el fondo musical y el botón de control de música -->
 
     <!-- Sección de Encabezado (Hero) - Nuevo estilo -->
     <header class="hero-header">
@@ -683,22 +660,22 @@
                 <div class="small-graphics-grid">
                     <!-- Gráfica Pequeña 1 -->
                     <div class="portfolio-item">
-                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 1" class="w-full h-auto object-cover rounded-lg">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 1" class="w-full h-full object-cover rounded-lg">
                         <!-- Título y descripción eliminados -->
                     </div>
                     <!-- Gráfica Pequeña 2 -->
                     <div class="portfolio-item">
-                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 2" class="w-full h-auto object-cover rounded-lg">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 2" class="w-full h-full object-cover rounded-lg">
                         <!-- Título y descripción eliminados -->
                     </div>
                     <!-- Gráfica Pequeña 3 -->
                     <div class="portfolio-item">
-                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 3" class="w-full h-auto object-cover rounded-lg">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 3" class="w-full h-full object-cover rounded-lg">
                         <!-- Título y descripción eliminados -->
                     </div>
                     <!-- Gráfica Pequeña 4 -->
                     <div class="portfolio-item">
-                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 4" class="w-full h-auto object-cover rounded-lg">
+                        <img src="https://i.imgur.com/3NcWtcz.png" alt="Pieza Gráfica 4" class="w-full h-full object-cover rounded-lg">
                         <!-- Título y descripción eliminados -->
                     </div>
                 </div>
@@ -872,9 +849,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const heroImageContainer = document.querySelector('.hero-image-container');
             const heroAvatar = document.getElementById('heroAvatar');
-            const backgroundMusic = document.getElementById('backgroundMusic');
+            // const backgroundMusic = document.getElementById('backgroundMusic'); // Se eliminó la referencia
             const videos = document.querySelectorAll('video'); // Selecciona todos los elementos de video
-            const musicPlayButton = document.getElementById('musicPlayButton');
+            // const musicPlayButton = document.getElementById('musicPlayButton'); // Se eliminó la referencia
 
             if (heroImageContainer && heroAvatar) {
                 // Solo activar la animación en pantallas de escritorio
@@ -1007,30 +984,7 @@
                 }, 500); // Pequeña pausa entre el título y el subtítulo
             });
 
-            // Lógica para controlar la música de fondo con la reproducción de videos
-            function updateBackgroundMusicState() {
-                let anyVideoPlaying = false;
-                videos.forEach(video => {
-                    if (!video.paused && !video.ended) {
-                        anyVideoPlaying = true;
-                    }
-                });
-
-                if (anyVideoPlaying) {
-                    backgroundMusic.pause();
-                } else {
-                    // Solo intentar reproducir si no está ya reproduciéndose y no ha terminado
-                    if (backgroundMusic.paused || backgroundMusic.ended) {
-                        backgroundMusic.play().catch(e => {
-                            // Este catch es importante para manejar errores de autoplay (navegadores)
-                            console.log("Autoplay prevented for background music:", e);
-                            // Podrías añadir un botón de "Reproducir música" si el autoplay falla
-                        });
-                    }
-                }
-            }
-
-            // Adjuntar listeners a todos los videos y sus overlays
+            // Lógica para controlar la reproducción de videos (sin música de fondo)
             videos.forEach(video => {
                 const videoContainer = video.closest('.portfolio-item'); // Contenedor padre del video
                 const overlay = videoContainer ? videoContainer.querySelector('.video-overlay') : null;
@@ -1056,74 +1010,23 @@
                     // Oculta el overlay cuando el video se reproduce
                     video.addEventListener('play', () => {
                         overlay.classList.add('hidden');
-                        updateBackgroundMusicState(); // Actualiza el estado de la música
                     });
 
                     // Muestra el overlay cuando el video se pausa o termina
                     video.addEventListener('pause', () => {
                         overlay.classList.remove('hidden');
-                        updateBackgroundMusicState(); // Actualiza el estado de la música
                     });
                     video.addEventListener('ended', () => {
                         overlay.classList.remove('hidden');
-                        updateBackgroundMusicState(); // Actualiza el estado de la música
                     });
-                } else {
-                    // Si no hay overlay (por ejemplo, videos que no están dentro de un contenedor .video-vertical-container/.horizontal-container),
-                    // solo se gestiona la música de fondo.
-                    video.addEventListener('play', updateBackgroundMusicState);
-                    video.addEventListener('pause', updateBackgroundMusicState);
-                    video.addEventListener('ended', updateBackgroundMusicState);
                 }
             });
-
-            // Lógica para el botón de reproducción de música flotante
-            if (musicPlayButton) {
-                musicPlayButton.addEventListener('click', () => {
-                    if (backgroundMusic.paused) {
-                        backgroundMusic.play().then(() => {
-                            musicPlayButton.classList.add('hidden'); // Oculta el botón una vez que la música empieza a sonar
-                        }).catch(e => {
-                            console.log("Error al reproducir música desde el botón:", e);
-                        });
-                    }
-                });
-
-                // Ocultar el botón si la música ya está reproduciéndose (por ejemplo, si el usuario ya interactuó)
-                backgroundMusic.addEventListener('play', () => {
-                    musicPlayButton.classList.add('hidden');
-                });
-
-                // Mostrar el botón si la música se pausa manualmente (no por un video)
-                backgroundMusic.addEventListener('pause', () => {
-                    let anyVideoPlaying = false;
-                    videos.forEach(video => {
-                        if (!video.paused && !video.ended) {
-                            anyVideoPlaying = true;
-                        }
-                    });
-                    if (!anyVideoPlaying) { // Solo mostrar si no hay videos reproduciéndose
-                        musicPlayButton.classList.remove('hidden');
-                    }
-                });
-            }
-
-            // Intentar reproducir la música de fondo al inicio (puede ser bloqueado por el navegador)
-            backgroundMusic.play().catch(e => {
-                console.log("Autoplay prevented for initial background music:", e);
-                // Si el autoplay falla, nos aseguramos de que el botón de música sea visible
-                if (musicPlayButton) {
-                    musicPlayButton.classList.remove('hidden');
-                }
-            });
-
-            // Asegurarse de que el estado de la música se actualice si los videos se reproducen automáticamente (aunque ya no lo hagan)
-            updateBackgroundMusicState();
         });
     </script>
 
 </body>
 </html>
+
 
 
 
