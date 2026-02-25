@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Evita que la página aparezca en buscadores como Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Para Mi Persona Especial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #fffafa 50%, #fff5f5 100%);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            color: #333333;
+        }
+
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-guinda {
+            color: #800020;
+        }
+        .bg-guinda {
+            background-color: #800020;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            border: 1px solid #eeeeee;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.03) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        .heart-btn {
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .text-section {
+            line-height: 2.4;
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        /* Estilos Mejorados del Carrusel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(128, 0, 32, 0.6);
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 30;
+            border: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-btn:hover {
+            background: rgba(128, 0, 32, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* Puntos indicadores */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #d1d1d1;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #800020;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Hero Section -->
+    <header class="flex flex-col items-center justify-start min-h-screen text-center px-4 pt-32">
+        <h1 class="text-5xl md:text-6xl title-font italic text-guinda mb-16 opacity-0 transition-opacity duration-1000" id="mainTitle">
+            Para ti...
+        </h1>
+        
+        <!-- Imagen Principal Horizontal con Marco -->
+        <div class="flex justify-center mb-16 fade-in-up">
+            <div class="photo-frame transform rotate-1">
+                <img src="https://picsum.photos/800/450?random=15" alt="[Imagen de Nuestra Foto Principal]" class="max-w-full h-auto w-[350px] md:w-[600px] aspect-video object-cover rounded-sm">
+            </div>
+        </div>
+
+        <p class="text-gray-400 italic mb-10 max-w-md font-light tracking-widest uppercase text-xs">Desliza para leer</p>
+
+        <button onclick="scrollToContent()" class="heart-btn bg-guinda text-white p-5 rounded-full shadow-xl transition-all hover:brightness-125">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </button>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main id="content" class="py-24 px-6 max-w-4xl mx-auto space-y-32">
+        
+        <div class="text-section text-center">
+            <p>
+                Quería escribirte esto porque a veces el día a día pasa tan rápido que olvidamos detenernos y apreciar lo que tenemos. Desde que llegaste a mi vida, todo tiene un color diferente. No solo eres mi pareja, eres ese refugio donde siempre encuentro paz y esa sonrisa que me motiva a seguir adelante.
+            </p>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="photo-frame transform -rotate-2">
+                <img src="https://picsum.photos/600/400?random=10" alt="[Imagen de Recuerdo Especial]" class="max-w-full h-auto md:w-[550px] object-cover">
+            </div>
+        </div>
+
+        <div class="text-section text-center">
+            <p>
+                Me encanta cómo nos entendemos sin decir nada, cómo nuestras risas encajan perfectamente y cómo, incluso en los momentos de silencio, me siento completamente feliz a tu lado. Gracias por tu paciencia, por tu cariño y por ser la persona increíble que eres.
+            </p>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="photo-frame transform rotate-2">
+                <img src="https://picsum.photos/600/400?random=11" alt="[Imagen de Momento Juntos]" class="max-w-full h-auto md:w-[550px] object-cover">
+            </div>
+        </div>
+
+        <!-- Carrusel de Fotos Final Mejorado -->
+        <div class="py-10">
+            <h2 class="title-font text-center text-guinda text-3xl mb-12 italic">Nuestros recuerdos favoritos</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame">
+                            <img src="https://picsum.photos/800/500?random=20" class="w-full h-auto max-w-[300px] md:max-w-[550px] object-cover" alt="[Imagen de Foto Carrusel 1]">
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame">
+                            <img src="https://picsum.photos/800/500?random=21" class="w-full h-auto max-w-[300px] md:max-w-[550px] object-cover" alt="[Imagen de Foto Carrusel 2]">
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame">
+                            <img src="https://picsum.photos/800/500?random=22" class="w-full h-auto max-w-[300px] md:max-w-[550px] object-cover" alt="[Imagen de Foto Carrusel 3]">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+            </div>
+            <!-- Puntos indicadores -->
+            <div class="carousel-dots" id="carouselDots">
+                <div class="dot active" onclick="goToSlide(0)"></div>
+                <div class="dot" onclick="goToSlide(1)"></div>
+                <div class="dot" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+
+        <div class="text-section text-center pb-40">
+            <p>
+                No sé qué nos depara el futuro, pero lo que sí sé es que quiero descubrirlo contigo. Gracias por cada momento, por cada detalle y por hacerme sentir la persona más afortunada del mundo. Te quiero más de lo que estas líneas pueden expresar.
+            </p>
+            <p class="title-font italic text-4xl text-guinda mt-16">Con todo mi amor.</p>
+        </div>
+
+    </main>
+
+    <script>
+        let currentSlide = 0;
+        let autoPlay;
+
+        window.onload = () => {
+            const title = document.getElementById('mainTitle');
+            title.style.opacity = '1';
+            
+            startAutoPlay();
+        };
+
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para mover el slide
+        function moveSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        // Ir a un slide específico (para los dots)
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        // Actualizar visualmente el carrusel y los puntos
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.dot');
+            
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                if(index === currentSlide) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        function startAutoPlay() {
+            autoPlay = setInterval(() => {
+                moveSlide(1);
+            }, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlay);
+            startAutoPlay();
+        }
+    </script>
+</body>
+</html>
